@@ -1,0 +1,132 @@
+[
+    {
+        "userProfileUrl": "www.image.com/profilepic1",
+        "name": [
+            {
+                "firstName": "Vishal",
+                "lastName": "Saraiwal"
+            }
+        ],
+        "username": "vishh",
+        "userid": 107,
+        "email": "vishalsaraiwal68@gmail.com",
+        "mobileNo": "+91 9193378534",
+        "Subscribed": true,
+        "address": [
+            {
+                "street": "Friends Colony",
+                "City": "Meerut",
+                "State": "Uttar Pradesh",
+                "pincode": 250001,
+                "country": "India",
+                "latitude": "40.759211",
+                "longitude": "-73.984638"
+            }
+        ],
+        "password": "vishh@ME22"
+    },
+    {
+        "userProfileUrl": "www.image.com/profilepic2",
+        "name": [
+            {
+                "firstName": "Alice",
+                "lastName": "Johnson"
+            }
+        ],
+        "username": "alice123",
+        "userid": 108,
+        "email": "alice@example.com",
+        "mobileNo": "+1 1234567890",
+        "Subscribed": false,
+        "address": [
+            {
+                "street": "Oak Street",
+                "City": "San Francisco",
+                "State": "California",
+                "pincode": 94107,
+                "country": "USA",
+                "latitude": "37.7749",
+                "longitude": "-122.4194"
+            }
+        ],
+        "password": "alice@1234"
+    },
+    {
+        "userProfileUrl": "www.image.com/profilepic3",
+        "name": [
+            {
+                "firstName": "John",
+                "lastName": "Doe"
+            }
+        ],
+        "username": "johndoe",
+        "userid": 109,
+        "email": "john@example.com",
+        "mobileNo": "+44 7890123456",
+        "Subscribed": true,
+        "address": [
+            {
+                "street": "Maple Avenue",
+                "City": "London",
+                "State": "England",
+                "pincode": 250023,
+                "country": "United Kingdom",
+                "latitude": "51.5074",
+                "longitude": "-0.1278"
+            }
+        ],
+        "password": "john@doe567"
+    },
+    {
+        "userProfileUrl": "www.image.com/profilepic4",
+        "name": [
+            {
+                "firstName": "Emma",
+                "lastName": "Smith"
+            }
+        ],
+        "username": "emmas",
+        "userid": 110,
+        "email": "emma.smith@example.com",
+        "mobileNo": "+61 412345678",
+        "Subscribed": false,
+        "address": [
+            {
+                "street": "Main Street",
+                "City": "Sydney",
+                "State": "New South Wales",
+                "pincode": 2000,
+                "country": "Australia",
+                "latitude": "-33.8688",
+                "longitude": "151.2093"
+            }
+        ],
+        "password": "emma@5678"
+    },
+    {
+        "userProfileUrl": "www.image.com/profilepic5",
+        "name": [
+            {
+                "firstName": "Juan",
+                "lastName": "Martinez"
+            }
+        ],
+        "username": "juanmar",
+        "userid": 111,
+        "email": "juan.m@example.com",
+        "mobileNo": "+34 612345678",
+        "Subscribed": true,
+        "address": [
+            {
+                "street": "Avenida Central",
+                "City": "Madrid",
+                "State": "Community of Madrid",
+                "pincode": 28001,
+                "country": "Spain",
+                "latitude": "40.4168",
+                "longitude": "-3.7038"
+            }
+        ],
+        "password": "juan@12345"
+    }
+]
