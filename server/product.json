@@ -1,6 +1,7 @@
 [
     {
         "product_img_url": "www.image.com/img1",
+        "productId": 101,
         "title": "Chocolates",
         "category": "Food",
         "price": 100,
@@ -26,6 +27,7 @@
     },
     {
         "product_img_url": "www.image.com/img2",
+        "productId": 102,
         "title": "Painkiller",
         "category": "Medicine",
         "price": 50,
@@ -51,6 +53,7 @@
     },
     {
         "product_img_url": "www.image.com/img3",
+        "productId": 103,
         "title": "Notebook",
         "category": "Other",
         "price": 5,
@@ -76,6 +79,7 @@
     },
     {
         "product_img_url": "www.image.com/img4",
+        "productId": 104,
         "title": "Apples",
         "category": "Food",
         "price": 2,
@@ -101,6 +105,7 @@
     },
     {
         "product_img_url": "www.image.com/img5",
+        "productId": 105,
         "title": "Antibiotic",
         "category": "Medicine",
         "price": 30,
@@ -126,6 +131,7 @@
     },
     {
         "product_img_url": "www.image.com/img6",
+        "productId": 106,
         "title": "Tennis Ball",
         "category": "Other",
         "price": 3,
@@ -151,6 +157,7 @@
     },
     {
         "product_img_url": "www.image.com/img7",
+        "productId": 107,
         "title": "Milk",
         "category": "Food",
         "price": 2,

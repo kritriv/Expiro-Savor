@@ -2,9 +2,12 @@ require("dotenv").config();
 
 const express = require("express");
 const app = express();
+const router = express.Router();
+
 const product_routes = require("./routes/products")
 const users_routes = require("./routes/usersList")
 const ngos_routes = require("./routes/ngoList")
+
 
 const connectDB = require("./db/connect");
 
@@ -18,6 +21,7 @@ app.get("/", (req, res) => {
 app.use("/api/products", product_routes);
 app.use("/api/users", users_routes);
 app.use("/api/ngos", ngos_routes);
+app.use(express.json());
 
 const start = async () => {
     try{

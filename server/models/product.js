@@ -3,13 +3,17 @@ const Schema = mongoose.Schema;
 
 // Define the schema for the product
 const productSchema = new Schema({
+    productId: {
+        type: Number,
+        // required: true
+    },
     product_img_url: {
         type: String,
-        required: true
+        // required: true
     },
     title: {
         type: String,
-        required: true
+        // required: true
     },
     category: {
         type: String,
@@ -17,7 +21,7 @@ const productSchema = new Schema({
     },
     price: {
         type: Number,
-        required: true
+        // required: true
     },
     ishugestock: {
         type: Boolean,
@@ -25,17 +29,21 @@ const productSchema = new Schema({
     },
     stock: {
         type: Number,
-        required: true
+        // required: true
     },
     description: {
         type: String,
-        required: true
+        // required: true
     },
     expiry_date: {
         type: Date,
-        required: true
+        // required: true
     },
     isExpireIn24: {
+        type: Boolean,
+        default: false
+    },
+    is_donatable: {
         type: Boolean,
         default: false
     },
@@ -60,7 +68,7 @@ const productSchema = new Schema({
     },
     userid: {
         type: Number,
-        required: true
+        // required: true
     }
 });
 
