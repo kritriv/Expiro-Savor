@@ -85,7 +85,6 @@ const getSingleProduct = async (req, res) =>{
 const postSingleProduct = async (req, res) =>{
     const data=req.body;
     try {
-        console.log(data);
         const newProduct = new Product(data);
         const savedProduct = await newProduct.save();
         res.send(savedProduct);
