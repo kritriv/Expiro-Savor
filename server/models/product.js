@@ -3,10 +3,6 @@ const Schema = mongoose.Schema;
 
 // Define the schema for the product
 const productSchema = new Schema({
-    productId: {
-        type: Number,
-        // required: true
-    },
     product_img_url: {
         type: String,
         // required: true
@@ -21,7 +17,7 @@ const productSchema = new Schema({
     },
     price: {
         type: Number,
-        // required: true
+        default: 0
     },
     ishugestock: {
         type: Boolean,
@@ -45,19 +41,19 @@ const productSchema = new Schema({
     },
     is_donatable: {
         type: Boolean,
-        default: false
+        default: true
     },
-    productLocation: [
+    productLocation:
         {
-            street: String,
+            Address: String,
             City: String,
             State: String,
             pincode: Number,
             country: String,
             latitude: String,
             longitude: String
-        }
-    ],
+        },
+
     expiryStatus: {
         type: Boolean,
         default: false
@@ -65,10 +61,6 @@ const productSchema = new Schema({
     productStatus: {
         type: Boolean,
         default: true
-    },
-    userid: {
-        type: Number,
-        // required: true
     }
 });
 

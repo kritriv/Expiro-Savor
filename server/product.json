@@ -1,184 +1,48 @@
 [
     {
         "product_img_url": "www.image.com/img1",
-        "productId": 101,
         "title": "Chocolates",
         "category": "Food",
-        "price": 100,
+        "price": 0,
         "ishugestock": true,
         "stock": 10,
         "description": "This is the product description",
         "expiry_date": "2023-12-20",
         "isExpireIn24": false,
-        "productLocation": [
+        "productLocation": 
             {
-                "street": "Friends Colony",
+                "Address": "Friends Colony",
                 "City": "Meerut",
                 "State": "Uttar Pradesh",
                 "pincode": 250001,
                 "country": "India",
                 "latitude": "40.759211",
                 "longitude": "-73.984638"
-            }
-        ],
+            },
         "expiryStatus": false,
-        "productStatus": true,
-        "userid": 101
+        "productStatus": true
     },
     {
-        "product_img_url": "www.image.com/img2",
-        "productId": 102,
-        "title": "Painkiller",
+        "product_img_url": "www.image.com/img1",
+        "title": "Peracitamol",
         "category": "Medicine",
-        "price": 50,
-        "ishugestock": false,
-        "stock": 25,
-        "description": "Effective pain relief medication",
-        "expiry_date": "2023-11-15",
-        "isExpireIn24": true,
-        "productLocation": [
-            {
-                "street": "Green Street",
-                "City": "New York",
-                "State": "New York",
-                "pincode": 10001,
-                "country": "USA",
-                "latitude": "40.712776",
-                "longitude": "-74.005974"
-            }
-        ],
-        "expiryStatus": true,
-        "productStatus": true,
-        "userid": 102
-    },
-    {
-        "product_img_url": "www.image.com/img3",
-        "productId": 103,
-        "title": "Notebook",
-        "category": "Other",
-        "price": 5,
+        "price": 0,
         "ishugestock": true,
-        "stock": 50,
-        "description": "Plain paper notebook",
-        "expiry_date": "2024-06-30",
+        "stock": 10,
+        "description": "This is the product description",
+        "expiry_date": "2023-12-20",
         "isExpireIn24": false,
-        "productLocation": [
+        "productLocation": 
             {
-                "street": "Main Street",
-                "City": "Los Angeles",
-                "State": "California",
-                "pincode": 90001,
-                "country": "USA",
-                "latitude": "34.052235",
-                "longitude": "-118.243683"
-            }
-        ],
+                "Address": "Friends Colony",
+                "City": "Meerut",
+                "State": "Uttar Pradesh",
+                "pincode": 250001,
+                "country": "India",
+                "latitude": "40.759211",
+                "longitude": "-73.984638"
+            },
         "expiryStatus": false,
-        "productStatus": true,
-        "userid": 103
-    },
-    {
-        "product_img_url": "www.image.com/img4",
-        "productId": 104,
-        "title": "Apples",
-        "category": "Food",
-        "price": 2,
-        "ishugestock": false,
-        "stock": 100,
-        "description": "Fresh and juicy apples",
-        "expiry_date": "2023-12-08",
-        "isExpireIn24": false,
-        "productLocation": [
-            {
-                "street": "Orchard Road",
-                "City": "Seattle",
-                "State": "Washington",
-                "pincode": 98101,
-                "country": "USA",
-                "latitude": "47.606209",
-                "longitude": "-122.332069"
-            }
-        ],
-        "expiryStatus": true,
-        "productStatus": true,
-        "userid": 104
-    },
-    {
-        "product_img_url": "www.image.com/img5",
-        "productId": 105,
-        "title": "Antibiotic",
-        "category": "Medicine",
-        "price": 30,
-        "ishugestock": true,
-        "stock": 15,
-        "description": "Broad-spectrum antibiotic",
-        "expiry_date": "2023-09-25",
-        "isExpireIn24": true,
-        "productLocation": [
-            {
-                "street": "Pharmacy Avenue",
-                "City": "Toronto",
-                "State": "Ontario",
-                "pincode": 10005,
-                "country": "Canada",
-                "latitude": "43.65107",
-                "longitude": "-79.347015"
-            }
-        ],
-        "expiryStatus": true,
-        "productStatus": true,
-        "userid": 105
-    },
-    {
-        "product_img_url": "www.image.com/img6",
-        "productId": 106,
-        "title": "Tennis Ball",
-        "category": "Other",
-        "price": 3,
-        "ishugestock": true,
-        "stock": 50,
-        "description": "High-quality tennis ball for practice",
-        "expiry_date": "2024-04-15",
-        "isExpireIn24": false,
-        "productLocation": [
-            {
-                "street": "Court Street",
-                "City": "Melbourne",
-                "State": "Victoria",
-                "pincode": 3000,
-                "country": "Australia",
-                "latitude": "-37.813628",
-                "longitude": "144.963058"
-            }
-        ],
-        "expiryStatus": false,
-        "productStatus": true,
-        "userid": 106
-    },
-    {
-        "product_img_url": "www.image.com/img7",
-        "productId": 107,
-        "title": "Milk",
-        "category": "Food",
-        "price": 2,
-        "ishugestock": false,
-        "stock": 20,
-        "description": "Fresh dairy milk",
-        "expiry_date": "2023-12-10",
-        "isExpireIn24": false,
-        "productLocation": [
-            {
-                "street": "Dairy Farm Road",
-                "City": "Auckland",
-                "State": "North Island",
-                "pincode": 1010,
-                "country": "New Zealand",
-                "latitude": "-36.848461",
-                "longitude": "174.763336"
-            }
-        ],
-        "expiryStatus": true,
-        "productStatus": true,
-        "userid": 107
+        "productStatus": true
     }
 ]

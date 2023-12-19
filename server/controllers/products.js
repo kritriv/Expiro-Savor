@@ -1,5 +1,8 @@
 const Product = require("../models/product");
+const { ObjectId } = require('mongodb');
 
+
+// To get All Products List
 const getAllProducts = async (req, res) => {
     // try {
     const { category, productId, title, isExpireIn24, ishugestock, is_donatable, city, state, pincode, country, sort, select } = req.query;
@@ -70,64 +73,50 @@ const getAllProducts = async (req, res) => {
     // }
 }
 
-
-const getAllProductsTesting = async (req, res) => {
-    const Products = await Product.find(req.query).sort("name");
-    res.status(200).json({ Products });
+// To get Single Product Details
+const getSingleProduct = async (req, res) =>{
+    const id=req.params.id;
+    const filter={_id:new ObjectId(id)};
+    const result=await Product.findOne(filter);
+    res.send(result);
 }
-const addProduct = async (req, res) => {
+
+// To Add a Product to Products list
+const postSingleProduct = async (req, res) =>{
+    const data=req.body;
     try {
-        let product = new Product(req.body);
-        let result = await product.save();
-        res.send(result);
-
-        // if (!req.body) {
-        //     return res.status(400).json({ error: 'Request body is empty' });
-        // }
-
-        // const {
-        //     productId,
-        //     product_img_url,
-        //     title,
-        //     category,
-        //     price,
-        //     ishugestock,
-        //     stock,
-        //     description,
-        //     expiry_date,
-        //     isExpireIn24,
-        //     is_donatable,
-        //     productLocation,
-        //     expiryStatus,
-        //     productStatus,
-        //     userid,
-        // } = req.body;
-
-        // const newProduct = new Product({
-        //     productId,
-        //     product_img_url,
-        //     title,
-        //     category,
-        //     price,
-        //     ishugestock,
-        //     stock,
-        //     description,
-        //     expiry_date,
-        //     isExpireIn24,
-        //     is_donatable,
-        //     productLocation,
-        //     expiryStatus,
-        //     productStatus,
-        //     userid,
-        // });
-
-        // Save the new product to the database
-        // await newProduct.save();
-
-        // res.status(201).json({ message: 'Product added successfully', product: newProduct });
+        console.log(data);
+        const newProduct = new Product(data);
+        const savedProduct = await newProduct.save();
+        res.send(savedProduct);
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).send({ error: error.message });
     }
 }
-module.exports = { getAllProducts, getAllProductsTesting, addProduct };
+
+// To Delete a Single Product Details
+const deleteSingleProducts = async (req, res) =>{
+    const id=req.params.id;
+    const filter={_id:new ObjectId(id)};
+    const result=await Product.deleteOne(filter);
+    res.send(result);
+}
+
+// To Update a Single Product Details
+const updateSingleProducts = async (req, res) =>{
+    const id=req.params.id;
+    const updateProductData=req.body;
+    const filter={_id:new ObjectId(id)};
+
+    const updateDoc={
+        $set:{
+          ...updateProductData
+        },
+      }
+      const options={upsert:true};
+
+    const result=await Product.updateOne(filter,updateDoc,options);
+  res.send(result);
+}
+
+module.exports = { getAllProducts, getSingleProduct, postSingleProduct, deleteSingleProducts, updateSingleProducts };
