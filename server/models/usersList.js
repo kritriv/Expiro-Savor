@@ -12,7 +12,7 @@ const userSchema = new Schema({
     {
         firstName: {
             type: String,
-            // required: true
+            required: true
         },
         lastName: {
             type: String,
@@ -21,15 +21,17 @@ const userSchema = new Schema({
     },
     username: {
         type: String,
-        // required: true
+        unique:true,
+        required: true
     },
     userid: {
         type: Number,
-        // required: true
+        required: true
     },
     email: {
         type: String,
-        // required: true,
+        required: true,
+        unique:true,
         validate: {
             validator: function (v) {
                 // Basic email format check using a regular expression
@@ -39,8 +41,8 @@ const userSchema = new Schema({
         }
     },
     mobileNo: {
-        type: Number,
-        // required: true
+        type: String,
+        required: true
     },
     Subscribed: {
         type: Boolean,
@@ -58,9 +60,13 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
-        // required: true
+        required: true
+    },
+    role:{
+        type: Number,
+        default: 0
     }
-});
+},{timestamps:true});
 
 // Create the model for the user schema
 const User = mongoose.model('User', userSchema);

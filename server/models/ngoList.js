@@ -10,11 +10,12 @@ const ngoSchema = new Schema({
     },
     name: {
         type: String,
-        // required: true
+        required: true
     },
     email: {
         type: String,
-        // required: true,
+        unique:true,
+        required: true,
         validate: {
             validator: function (v) {
                 // Basic email format check using a regular expression
@@ -24,8 +25,8 @@ const ngoSchema = new Schema({
         }
     },
     mobileNo: {
-        type: Number,
-        // required: true
+        type: String,
+        required: true
     },
     address: 
         {
@@ -41,7 +42,7 @@ const ngoSchema = new Schema({
         type: Boolean,
         default: true
     }
-});
+},{timestamps:true});
 
 // Create the model for the NGO schema
 const NGO = mongoose.model('NGO', ngoSchema);
