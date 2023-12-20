@@ -4,13 +4,22 @@ const { ObjectId } = require('mongodb');
 // To get All NGOs Details
 const getAllNgos= async (req, res) => {
 
-    const {email, city, state, pincode, country, sort, select } = req.query;
+    const {email,name,mobileNo,onGoogleMap, city, state, pincode, country, sort, select } = req.query;
     const queryObject = {};
     
     // ======= Filters Queries =======
 
     if (email) {
         queryObject.email = { $regex: new RegExp(email, 'i') };
+    }
+    if (name) {
+        queryObject.name = { $regex: new RegExp(name, 'i') };
+    }
+    if (mobileNo) {
+        queryObject.mobileNo = mobileNo;
+    }
+    if (onGoogleMap !== undefined) {
+        queryObject.onGoogleMap = (onGoogleMap.toLowerCase() === 'true');
     }
     if (city) {
         queryObject['address.City'] = { $regex: new RegExp(city, 'i') };

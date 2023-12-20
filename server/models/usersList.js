@@ -6,30 +6,30 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     userProfileUrl: {
         type: String,
-        required: true
+        // required: true
     },
     name:
     {
         firstName: {
             type: String,
-            required: true
+            // required: true
         },
         lastName: {
             type: String,
-            required: true
+            // required: true
         }
     },
     username: {
         type: String,
-        required: true
+        // required: true
     },
     userid: {
         type: Number,
-        required: true
+        // required: true
     },
     email: {
         type: String,
-        required: true,
+        // required: true,
         validate: {
             validator: function (v) {
                 // Basic email format check using a regular expression
@@ -39,8 +39,8 @@ const userSchema = new Schema({
         }
     },
     mobileNo: {
-        type: String,
-        required: true
+        type: Number,
+        // required: true
     },
     Subscribed: {
         type: Boolean,
@@ -58,7 +58,7 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
-        required: true
+        // required: true
     }
 });
 

@@ -4,7 +4,7 @@ const { ObjectId } = require('mongodb');
 // To get All Users list
 const getAllUsers = async (req, res) => {
 
-    const {userid, username, firstName, lastName, email,Subscribed, city, state, pincode, country, sort, select } = req.query;
+    const {userid, username, firstName, lastName, email, mobileNo, Subscribed, city, state, pincode, country, sort, select } = req.query;
     const queryObject = {};
     
     // ======= Filters Queries =======
@@ -18,6 +18,9 @@ const getAllUsers = async (req, res) => {
     }
     if (username) {
         queryObject.username = { $regex: new RegExp(username, 'i') };
+    }
+    if (mobileNo) {
+        queryObject.mobileNo = mobileNo;
     }
     if (Subscribed) {
         queryObject.Subscribed =  (Subscribed.toLowerCase() === 'true');

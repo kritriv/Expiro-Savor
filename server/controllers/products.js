@@ -5,20 +5,18 @@ const { ObjectId } = require('mongodb');
 // To get All Products List
 const getAllProducts = async (req, res) => {
     // try {
-    const { category, productId, title, isExpireIn24, ishugestock, is_donatable, city, state, pincode, country, sort, select } = req.query;
+    const { category, title, isExpireIn24, ishugestock, is_donatable,productStatus, expiryStatus, city, state, pincode, country, sort, select } = req.query;
     const queryObject = {};
 
     // ======= Filters Queries =======
 
-    if (category) {
-        queryObject.category = { $regex: new RegExp(category, 'i') };
-    }
-    if (productId) {
-        queryObject.productId = productId;
-    }
     if (title) {
         queryObject.title = { $regex: new RegExp(title, 'i') };
     }
+    if (category) {
+        queryObject.category = { $regex: new RegExp(category, 'i') };
+    }
+    
     if (isExpireIn24 !== undefined) {
         queryObject.isExpireIn24 = (isExpireIn24.toLowerCase() === 'true');
     }
@@ -27,6 +25,12 @@ const getAllProducts = async (req, res) => {
     }
     if (is_donatable !== undefined) {
         queryObject.is_donatable = (is_donatable.toLowerCase() === 'true');
+    }
+    if (productStatus !== undefined) {
+        queryObject.productStatus = (productStatus.toLowerCase() === 'true');
+    }
+    if (expiryStatus !== undefined) {
+        queryObject.expiryStatus = (expiryStatus.toLowerCase() === 'true');
     }
 
     if (city) {
