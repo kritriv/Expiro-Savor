@@ -1,12 +1,11 @@
 require("dotenv").config();
-
 const express = require("express");
 const app = express();
-const router = express.Router();
 
 const product_routes = require("./routes/products")
 const users_routes = require("./routes/usersList")
 const ngos_routes = require("./routes/ngoList")
+const ApiAuthenticate = require("./middleware/basic-auth")
 
 
 const connectDB = require("./db/connect");
@@ -19,6 +18,7 @@ app.get("/", (req, res) => {
 
 // middleware or set the routes
 
+app.use('/api', ApiAuthenticate);
 app.use("/api", product_routes);  // middleware routes for Products
 app.use("/api", users_routes);   // middleware routes for Users
 app.use("/api", ngos_routes);    // middleware routes for NGos
