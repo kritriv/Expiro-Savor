@@ -8,18 +8,17 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    name: [
-        {
-            firstName: {
-                type: String,
-                required: true
-            },
-            lastName: {
-                type: String,
-                required: true
-            }
+    name:
+    {
+        firstName: {
+            type: String,
+            required: true
+        },
+        lastName: {
+            type: String,
+            required: true
         }
-    ],
+    },
     username: {
         type: String,
         required: true
@@ -47,17 +46,16 @@ const userSchema = new Schema({
         type: Boolean,
         default: true
     },
-    address: [
-        {
-            street: String,
-            City: String,
-            State: String,
-            pincode: Number,
-            country: String,
-            latitude: String,
-            longitude: String
-        }
-    ],
+    address:
+    {
+        street: String,
+        City: String,
+        State: String,
+        pincode: Number,
+        country: String,
+        latitude: String,
+        longitude: String
+    },
     password: {
         type: String,
         required: true

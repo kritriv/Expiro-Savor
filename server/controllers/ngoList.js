@@ -1,6 +1,8 @@
 const ngoList = require("../models/ngoList");
+const { ObjectId } = require('mongodb');
 
-const getNGOList= async (req, res) => {
+// To get All NGOs Details
+const getAllNgos= async (req, res) => {
 
     const {email, city, state, pincode, country, sort, select } = req.query;
     const queryObject = {};
@@ -48,5 +50,49 @@ const getNGOList= async (req, res) => {
     res.status(200).json({ NgoList, nbHits: NgoList.length });
 }
 
+// To get Single NGO Details
+const getSingleNgo = async (req, res) =>{
+    const id=req.params.id;
+    const filter={_id:new ObjectId(id)};
+    const result=await ngoList.findOne(filter);
+    res.send(result);
+}
 
-module.exports = { getNGOList };
+// To Add a NGO to NGOs list
+const postSingleNgo = async (req, res) =>{
+    const data=req.body;
+    try {
+        const newNgo = new ngoList(data);
+        const savedNgo = await newNgo.save();
+        res.send(savedNgo);
+    } catch (error) {
+        res.status(500).send({ error: error.message });
+    }
+}
+
+// To Delete a Single NGO Details
+const deleteSingleNgo = async (req, res) =>{
+    const id=req.params.id;
+    const filter={_id:new ObjectId(id)};
+    const result=await ngoList.deleteOne(filter);
+    res.send(result);
+}
+
+// To Update a Single NGO Details
+const updateSingleNgo = async (req, res) =>{
+    const id=req.params.id;
+    const updateNgoData=req.body;
+    const filter={_id:new ObjectId(id)};
+
+    const updateDoc={
+        $set:{
+          ...updateNgoData
+        },
+      }
+      const options={upsert:true};
+
+    const result=await ngoList.updateOne(filter,updateDoc,options);
+  res.send(result);
+}
+
+module.exports = { getAllNgos,postSingleNgo, getSingleNgo, deleteSingleNgo, updateSingleNgo };

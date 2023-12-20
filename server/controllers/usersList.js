@@ -1,5 +1,7 @@
 const usersList = require("../models/usersList");
+const { ObjectId } = require('mongodb');
 
+// To get All Users list
 const getAllUsers = async (req, res) => {
 
     const {userid, username, firstName, lastName, email,Subscribed, city, state, pincode, country, sort, select } = req.query;
@@ -64,5 +66,49 @@ const getAllUsers = async (req, res) => {
     res.status(200).json({ UsersList, nbHits: UsersList.length });
 }
 
+// To get Single User Details
+const getSingleUser = async (req, res) =>{
+    const id=req.params.id;
+    const filter={_id:new ObjectId(id)};
+    const result=await usersList.findOne(filter);
+    res.send(result);
+}
 
-module.exports = { getAllUsers };
+// To Add a User to Users list
+const postSingleUser = async (req, res) =>{
+    const data=req.body;
+    try {
+        const newUser = new usersList(data);
+        const savedUser = await newUser.save();
+        res.send(savedUser);
+    } catch (error) {
+        res.status(500).send({ error: error.message });
+    }
+}
+
+// To Delete Single User Details
+const deleteSingleUser = async (req, res) =>{
+    const id=req.params.id;
+    const filter={_id:new ObjectId(id)};
+    const result=await usersList.deleteOne(filter);
+    res.send(result);
+}
+
+// To Update a Single User Details
+const updateSingleUser = async (req, res) =>{
+    const id=req.params.id;
+    const updateUserData=req.body;
+    const filter={_id:new ObjectId(id)};
+
+    const updateDoc={
+        $set:{
+          ...updateUserData
+        },
+      }
+      const options={upsert:true};
+
+    const result=await usersList.updateOne(filter,updateDoc,options);
+  res.send(result);
+}
+
+module.exports = { getAllUsers,postSingleUser, getSingleUser, deleteSingleUser, updateSingleUser };

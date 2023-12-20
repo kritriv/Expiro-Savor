@@ -6,15 +6,15 @@ const Schema = mongoose.Schema;
 const ngoSchema = new Schema({
     ngoProfileUrl: {
         type: String,
-        required: true
+        // required: true
     },
     name: {
         type: String,
-        required: true
+        // required: true
     },
     email: {
         type: String,
-        required: true,
+        // required: true,
         validate: {
             validator: function (v) {
                 // Basic email format check using a regular expression
@@ -24,10 +24,10 @@ const ngoSchema = new Schema({
         }
     },
     mobileNo: {
-        type: String,
-        required: true
+        type: Number,
+        // required: true
     },
-    address: [
+    address: 
         {
             street: String,
             City: String,
@@ -36,11 +36,10 @@ const ngoSchema = new Schema({
             country: String,
             latitude: String,
             longitude: String
-        }
-    ],
-    onGoogle: {
+        },
+    onGoogleMap: {
         type: Boolean,
-        default: false
+        default: true
     }
 });
 

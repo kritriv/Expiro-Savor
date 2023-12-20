@@ -94,7 +94,7 @@ const postSingleProduct = async (req, res) =>{
 }
 
 // To Delete a Single Product Details
-const deleteSingleProducts = async (req, res) =>{
+const deleteSingleProduct = async (req, res) =>{
     const id=req.params.id;
     const filter={_id:new ObjectId(id)};
     const result=await Product.deleteOne(filter);
@@ -102,7 +102,7 @@ const deleteSingleProducts = async (req, res) =>{
 }
 
 // To Update a Single Product Details
-const updateSingleProducts = async (req, res) =>{
+const updateSingleProduct = async (req, res) =>{
     const id=req.params.id;
     const updateProductData=req.body;
     const filter={_id:new ObjectId(id)};
@@ -118,4 +118,4 @@ const updateSingleProducts = async (req, res) =>{
   res.send(result);
 }
 
-module.exports = { getAllProducts, getSingleProduct, postSingleProduct, deleteSingleProducts, updateSingleProducts };
+module.exports = { getAllProducts, getSingleProduct, postSingleProduct, deleteSingleProduct, updateSingleProduct };

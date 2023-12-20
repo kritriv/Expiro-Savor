@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getAllProducts,postSingleProduct, getSingleProduct, deleteSingleProducts, updateSingleProducts} = require("../controllers/products");
+const { getAllProducts,postSingleProduct, getSingleProduct, deleteSingleProduct, updateSingleProduct} = require("../controllers/products");
 
 // Middleware to parse JSON bodies
 router.use(express.json());
@@ -15,13 +15,13 @@ router.route("/products/add-product").post(postSingleProduct);
 router.route("/products/:id").get(getSingleProduct);
 
 // To Delete Single Product Details
-router.route("/products/:id").delete(deleteSingleProducts);
+router.route("/products/:id").delete(deleteSingleProduct);
 
 // To Update a Single Product Details
-router.route("/products/:id").put(updateSingleProducts);
+router.route("/products/:id").put(updateSingleProduct);
 
 // To Patch a Single Product Details
-router.route("/products/:id").patch(updateSingleProducts);
+router.route("/products/:id").patch(updateSingleProduct);
 
 
 module.exports = router;
