@@ -24,11 +24,11 @@ const userSchema = new Schema({
         unique:true,
         required: true
     },
-    userid: {
-        type: Number,
-        unique:true,
-        // required: true
-    },
+    // userid: {
+    //     type: Number,
+    //     unique:true,
+    //     // required: true
+    // },
     email: {
         type: String,
         required: true,
@@ -47,7 +47,7 @@ const userSchema = new Schema({
     },
     Subscribed: {
         type: Boolean,
-        default: true
+        default: false
     },
     address:
     {

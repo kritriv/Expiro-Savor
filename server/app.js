@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 
 // middleware or set the routes
 
-app.use('/api', ApiAuthenticate);
+// app.use('/api', ApiAuthenticate);
 app.use("/api", product_routes);  // middleware routes for Products
 app.use("/api", users_routes);   // middleware routes for Users
 app.use("/api", ngos_routes);    // middleware routes for NGos

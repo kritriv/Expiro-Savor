@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const { getAllUsers,postSingleUser, getSingleUser, deleteSingleUser, updateSingleUser} = require("../controllers/usersList")
+const { signin, signup, google, signout } = require('../controllers/authController');
 
 // To get All Users list
 router.route("/users").get(getAllUsers);
@@ -20,6 +21,12 @@ router.route("/users/:id").put(updateSingleUser);
 
 // To Patch a Single User Details
 router.route("/users/:id").patch(updateSingleUser);
+
+
+router.post('/users/signup', signup);
+router.post('/users/signin', signin);
+router.post('/users/google', google);
+router.post('/users/signout', signout);
 
 
 module.exports = router;
