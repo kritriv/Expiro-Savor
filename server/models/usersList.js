@@ -6,13 +6,13 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     userProfileUrl: {
         type: String,
-        // required: true
+        default:'https://cdn-icons-png.flaticon.com/512/1256/1256650.png',
     },
     name:
     {
         firstName: {
             type: String,
-            required: true
+            // required: true
         },
         lastName: {
             type: String,
@@ -26,7 +26,8 @@ const userSchema = new Schema({
     },
     userid: {
         type: Number,
-        required: true
+        unique:true,
+        // required: true
     },
     email: {
         type: String,
@@ -42,7 +43,7 @@ const userSchema = new Schema({
     },
     mobileNo: {
         type: String,
-        required: true
+        // required: true
     },
     Subscribed: {
         type: Boolean,

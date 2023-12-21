@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/app.js",
+    "createAPI": "node server/createAPI.js",
     "server": "nodemon server/app.js",
     "build": "npm install && npm install --prefix client && npm run build --prefix client"
   },
