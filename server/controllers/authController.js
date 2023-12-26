@@ -1,45 +1,97 @@
-const User =  require('../models/usersList.js');
-const bcryptjs =  require('bcryptjs');
-// import { errorHandler } from '../utils/error.js';
-const jwt =  require('jsonwebtoken');
+const User = require("../models/usersList.js");
+const bcryptjs = require("bcryptjs");
+const { hashPassword, checkRole, comparePassword } = require("../util/utils");
+const { generateAccessToken } = require("../service/jwt.service");
+const jwt = require("jsonwebtoken");
 
 const signup = async (req, res, next) => {
-  const { username, email, password } = req.body;
-  const hashedPassword = bcryptjs.hashSync(password, 10);
-  const newUser = new User({ username, email, password: hashedPassword });
   try {
-    await newUser.save();
-    res.status(201).json({ message: 'User created successfully' });
-  } catch (error) {
-    if (error.code === 11000 && error.keyPattern && error.keyValue) {
-      // Duplicate key error, username already exists
-      res.status(400).json({ message: 'Username is already taken' });
-    } else {
-      // Other error occurred
-      console.error(error);
-      res.status(400).json({ message: 'Unable to Register' });
-      next(error);
+    const { username, email, role, password } = req.body;
+
+    if (!username || !email || !password || !role) {
+      return res.status(200).json({
+        success: false,
+        message: "All fields are required.",
+      });
     }
+    // check user already exist..
+    const user = await User.findOne({ email }).lean();
+    if (user) {
+      return res.status(409).json({
+        success: false,
+        message: "Email already exist.",
+      });
+    }
+    //check role...
+    if (!checkRole(role)) {
+      return res.status(201).json({
+        success: false,
+        message: "Unkown role providing.",
+      });
+    }
+    //hash password ...
+    req.body.password = await hashPassword(password);
+
+    const newUser = new User(req.body);
+    const savedUser = await newUser.save();
+
+    //generate access token..
+    const accessToken = await generateAccessToken(savedUser._id);
+
+    return res.status(201).json({
+      success: true,
+      message: "Successfully registered.",
+      token: accessToken,
+      data: savedUser,
+    });
+  } catch (error) {
+    console.log("error", error);
+    return res.status(error.status || 500).json({
+      success: false,
+      message: error.message || "Internal server error",
+    });
   }
 };
 
 const signin = async (req, res, next) => {
-  const { email, password } = req.body;
   try {
-    const validUser = await User.findOne({ email });
-    if (!validUser) return next(errorHandler(404, 'User not found'));
-    const validPassword = bcryptjs.compareSync(password, validUser.password);
-    if (!validPassword) return next(errorHandler(401, 'wrong credentials'));
-    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
-    const { password: hashedPassword, ...rest } = validUser._doc;
-    const expiryDate = new Date(Date.now() + 3600000); // 1 hour
-    res
-      .cookie('access_token', token, { httpOnly: true, expires: expiryDate })
-      .status(200)
-      .json({ message: 'Signin successful', userData: rest });
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(200).json({
+        success: false,
+        message: "All fields are required.",
+      });
+    }
+    //check user exist
+    const user = await User.findOne({ email }).lean();
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found.",
+      });
+    }
+    // check user password..
+    const isPasswordValid = await comparePassword(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid credentials.",
+      });
+    }
+    //generate access token..
+    const accessToken = await generateAccessToken(user._id);
+    return res.status(200).json({
+      success: true,
+      message: "Login successfully.",
+      token: accessToken,
+    });
   } catch (error) {
-    res.status(500).json({ message: 'Unable to Login' });
-    // next(error);
+    console.log("error", error);
+    return res.status(error.status || 500).json({
+      success: false,
+      message: error.message || "Internal server error",
+    });
   }
 };
 
@@ -51,7 +103,7 @@ const google = async (req, res, next) => {
       const { password: hashedPassword, ...rest } = user._doc;
       const expiryDate = new Date(Date.now() + 3600000); // 1 hour
       res
-        .cookie('access_token', token, {
+        .cookie("access_token", token, {
           httpOnly: true,
           expires: expiryDate,
         })
@@ -64,7 +116,7 @@ const google = async (req, res, next) => {
       const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
       const newUser = new User({
         username:
-          req.body.name.split(' ').join('').toLowerCase() +
+          req.body.name.split(" ").join("").toLowerCase() +
           Math.random().toString(36).slice(-8),
         email: req.body.email,
         password: hashedPassword,
@@ -75,7 +127,7 @@ const google = async (req, res, next) => {
       const { password: hashedPassword2, ...rest } = newUser._doc;
       const expiryDate = new Date(Date.now() + 3600000); // 1 hour
       res
-        .cookie('access_token', token, {
+        .cookie("access_token", token, {
           httpOnly: true,
           expires: expiryDate,
         })
@@ -89,11 +141,11 @@ const google = async (req, res, next) => {
 
 const signout = (req, res) => {
   try {
-    res.clearCookie('access_token');
-    res.status(200).json({ message: 'Signout success!' });
+    res.clearCookie("access_token");
+    res.status(200).json({ message: "Signout success!" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
