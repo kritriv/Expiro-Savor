@@ -65,6 +65,7 @@ const userSchema = new Schema({
     },
     role:{
         type: String,
+        enum: ['user', 'admin', 'donar'],
         default: "user"
     }
 },{timestamps:true});
