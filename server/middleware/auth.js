@@ -6,15 +6,16 @@ dotenv.config();
 function authMiddleware(roles) {
   return async (request, response, next) => {
     try {
-      const token = request.headers.authorization;
+      const authHeader = request.headers.authorization;
 
-      if (!token) {
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
         return response.status(401).json({
           success: false,
-          message: "Access token missing.",
+          message: "Access token missing or invalid format.",
         });
       }
 
+      const token = authHeader.split(' ')[1]; // Extract token after "Bearer "
       const secretCode = process.env.JWT_SECRET_TOKEN;
       let decoded;
       try {
@@ -65,6 +66,5 @@ function authMiddleware(roles) {
     }
   };
 }
-
 
 module.exports = { authMiddleware };
