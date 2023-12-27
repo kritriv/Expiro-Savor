@@ -86,16 +86,17 @@ const getSingleProduct = async (req, res) =>{
 }
 
 // To Add a Product to Products list
-const postSingleProduct = async (req, res) =>{
-    const data=req.body;
+const postSingleProduct = async (req, res) => {
+    const data = req.body;
     try {
-        const newProduct = new Product(data);
-        const savedProduct = await newProduct.save();
-        res.send(savedProduct);
+      const newProduct = new Product(data);
+      const savedProduct = await newProduct.save();
+      res.status(201).send(savedProduct); // HTTP status 201 for successful creation
     } catch (error) {
-        res.status(500).send({ error: error.message });
+      console.error('Error creating and saving product:', error);
+      res.status(500).send({ error: 'Error creating and saving product.' });
     }
-}
+  };
 
 // To Delete a Single Product Details
 const deleteSingleProduct = async (req, res) =>{

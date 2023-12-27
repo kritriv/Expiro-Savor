@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require('cors');
 const app = express();
 
 const product_routes = require("./routes/products")
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 // middleware or set the routes
 
 // app.use('/api', ApiAuthenticate);
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use("/api", product_routes);  // middleware routes for Products

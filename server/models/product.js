@@ -5,11 +5,11 @@ const Schema = mongoose.Schema;
 const productSchema = new Schema({
     product_img_url: {
         type: String,
-        required: true
+        // required: true
     },
     title: {
         type: String,
-        required: true
+        // required: true
     },
     category: {
         type: String,
@@ -29,11 +29,11 @@ const productSchema = new Schema({
     },
     description: {
         type: String,
-        required: true
+        // required: true
     },
     expiry_date: {
         type: Date,
-        required: true
+        // required: true
     },
     isExpireIn24: {
         type: Boolean,
