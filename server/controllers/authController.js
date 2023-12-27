@@ -4,7 +4,7 @@ const { hashPassword, checkRole, comparePassword } = require("../util/utils");
 const { generateAccessToken } = require("../service/jwt.service");
 const jwt = require("jsonwebtoken");
 
-const signup = async (req, res, next) => {
+const signup = async (req, res) => {
   try {
     const { username, email, role, password } = req.body;
 
@@ -53,7 +53,7 @@ const signup = async (req, res, next) => {
   }
 };
 
-const signin = async (req, res, next) => {
+const signin = async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
