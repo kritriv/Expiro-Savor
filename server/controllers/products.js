@@ -48,6 +48,7 @@ const getAllProducts = async (req, res) => {
 
 
     let apiData = Product.find(queryObject);
+    // apiData = apiData.sort({ updatedAt: -1 });
     // ======== Short , Select ======
 
 

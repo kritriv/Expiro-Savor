@@ -83,6 +83,7 @@ const signin = async (req, res) => {
     const accessToken = await generateAccessToken(user._id);
     return res.status(200).cookie('access_token', accessToken, { httpOnly: true }).json({
       success: true,
+      userId: user._id,
       message: "Login successfully.",
       token: accessToken,
     });
