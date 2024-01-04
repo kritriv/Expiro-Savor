@@ -4,9 +4,9 @@ const Product = require("./models/product");
 const UsersList = require("./models/usersList");
 const NgoList = require("./models/ngoList");
 
-const ProductJson = require("./product.json");
-const UsersListJson = require("./usersList.json");
-const ngoListJson = require("./ngoList.json");
+const ProductJson = require("./Json/product.json");
+const UsersListJson = require("./Json/usersList.json");
+const ngoListJson = require("./Json/ngoList.json");
 
 const start = async () => {
     try{
