@@ -62,7 +62,7 @@ function authMiddleware(roles) {
         success: false,
         message: "Internal Server Error.",
         error: error.message,
-      });
+      });  
     }
   };
 }
