@@ -8,7 +8,11 @@ const users_routes = require("./routes/usersList")
 const ngos_routes = require("./routes/ngoList")
 const authenticationRouter = require('./routes/authentication');
 const adminRouter = require('./routes/admin');
-const ApiAuthenticate = require("./middleware/basic-auth")
+// const ApiAuthenticate = require("./middleware/basic-auth");
+const {authMiddleware} = require('./middleware/auth');
+const { allowOnlyIPs } = require('./middleware/cors-config');
+
+
 
 
 const connectDB = require("./db/connect");
@@ -22,7 +26,12 @@ app.get("/", (req, res) => {
 // middleware or set the routes
 
 // app.use('/api', ApiAuthenticate);
-app.use(cors());
+app.use('/admin/', authMiddleware(["admin"]));
+app.use('/user/', authMiddleware(["user"]));
+app.use('/donar/', authMiddleware(["donar"]));
+
+// Apply CORS middleware to all routes
+app.use('/api', allowOnlyIPs);
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use("/api", product_routes);  // middleware routes for Products
@@ -32,6 +41,16 @@ app.use("/api", ngos_routes);    // middleware routes for NGos
 app.use('/api/authentication',authenticationRouter);
 app.use('/api/admin',adminRouter);
 
+
+app.get("/user/checkrole", (req, res) => {
+    res.send("Welcome User!");
+})
+app.get("/admin/checkrole", (req, res) => {
+    res.send("Welcome Admin!");
+})
+app.get("/donar/checkrole", (req, res) => {
+    res.send("Welcome Donar!");
+})
 
 const ExpiroSavorAPP = async () => {
     try{

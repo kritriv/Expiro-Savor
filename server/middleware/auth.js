@@ -49,7 +49,7 @@ function authMiddleware(roles) {
       if (!findUser || !roles.includes(findUser.role)) {
         return response.status(403).json({
           success: false,
-          message: "Access Denied. Invalid user or role.",
+          message: `Access Denied! ${findUser.role} is not allow for this Path.`,
         });
       }
 
